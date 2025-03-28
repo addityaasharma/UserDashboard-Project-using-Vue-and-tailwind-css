@@ -42,7 +42,17 @@
                     Videos
                 </RouterLink>
 
-                <div class="surprise-card bg-[#8B7EFF] h-30 w-[90%] rounded-lg"></div>
+                <RouterLink to="/login"
+                class="block w-[90%] h-12 p-2.5 hover:bg-gray-600 text-center transition-all duration-180 rounded-lg mx-auto">
+                Login
+                </RouterLink>
+
+                <Button 
+                class="block w-[90%] h-12 p-2.5 hover:bg-gray-600 text-center transition-all duration-180 rounded-lg mx-auto" @click="logout">
+                    Logout
+                </Button>
+
+                <!-- <div class="surprise-card bg-[#8B7EFF] h-30 w-[90%] rounded-lg"></div> -->
             </div>
         </div>
 
@@ -70,9 +80,20 @@
 
 <script setup>
 import Broker from '@/views/Broker.vue';
-import { RouterView } from 'vue-router';
-
-
+import axios from 'axios';
+import { onMounted } from 'vue';
+import { RouterView, useRouter } from 'vue-router';
+const router = useRouter();
+onMounted(()=>{
+    const data = localStorage.getItem('token')
+    if(!data){
+        router.push("/login");
+    }
+})
+const logout=()=>{
+    router.push('/login')
+    localStorage.removeItem('token')
+}
 </script>
 
 <style lang="scss" scoped>
