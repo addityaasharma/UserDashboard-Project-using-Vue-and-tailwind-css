@@ -18,7 +18,7 @@
           <!-- Strategy Details -->
           <div class="py-4">
             <h2 class="text-lg font-semibold flex items-center">
-              <span class="ml-2">{{ strategy.name }}</span>
+              <span class="ml-2 text-white">{{ strategy.name }}</span>
             </h2>
   
             <!-- PNL Chart Placeholder -->
@@ -28,7 +28,7 @@
   
             <!-- PNL & Risk Indicator -->
             <div class="flex justify-between items-center mt-4">
-              <p class="text-lg font-semibold">Total PNL: <span class="text-green-500">0.00</span></p>
+              <p class="text-lg font-semibold text-white">Total PNL: <span class="text-green-500">0.00</span></p>
               <div class="flex items-center space-x-2">
                 <span class="text-xs bg-red-200 text-red-700 px-2 py-1 rounded-full">HIGH</span>
               </div>
@@ -52,23 +52,12 @@
     </div>
   </template>
   
-  <script>
-  export default {
-    data() {
-      return {
-        activeTab: "Elite",
-        tabs: ["Essential Nifty", "Essential Banknifty", "Monthly", "Half Yearly", "Testpa", "Elite", "Example Plan", "New Plan"],
-        strategies: [
-          { type: "NIFTY", name: "kuldeepmnwe we" },
-          { type: "BANKNIFTY", name: "Example Strategy" },
-          { type: "BANKNIFTY", name: "Example Strategy" },
-          { type: "BANKNIFTY", name: "DOMAIN OCILLATOR" },
-          { type: "BANKNIFTY", name: "DOMAIN RANGE BREAKOUT" },
-          { type: "NIFTY", name: "DOMAIN RANGE BREAKOUT" },
-        ],
-      };
-    },
-  };
+  <script setup>
+import { useStrategyStore } from '@/stores/strats';
+import { storeToRefs } from 'pinia';
+
+ const strategy = useStrategyStore()
+ const {activeTab,tabs, strategies} = storeToRefs(strategy)
   </script>
   
   <style>
