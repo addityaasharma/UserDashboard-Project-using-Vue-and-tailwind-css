@@ -4,7 +4,8 @@
         <!-- this is navigation  -->
         <div class="nav h-[100vh] w-[20%] bg-black">
             <div class="logo h-16 w-full border-2 border-[#292424] flex items-center justify-center">
-                <img src="../assets/future.svg" alt="Logo" class="max-h-full max-w-full object-contain">
+                <!-- <img src="../assets/future.svg" alt="Logo" class="max-h-full max-w-full object-contain"> -->
+                <h1 class="text-white">{{ route.name }}</h1>
             </div>
 
             <div class="menu text-white flex flex-col items-center gap-6 mt-8">
@@ -47,10 +48,15 @@
                 Login
                 </RouterLink>
 
-                <Button 
+                <RouterLink to="/chart"
+                class="block w-[90%] h-12 p-2.5 hover:bg-gray-600 text-center transition-all duration-180 rounded-lg mx-auto">
+                Chart
+                </RouterLink>
+
+                <!-- <Button 
                 class="block w-[90%] h-12 p-2.5 hover:bg-gray-600 text-center transition-all duration-180 rounded-lg mx-auto" @click="logout">
                     Logout
-                </Button>
+                </Button> -->
 
                 <!-- <div class="surprise-card bg-[#8B7EFF] h-30 w-[90%] rounded-lg"></div> -->
             </div>
@@ -63,7 +69,7 @@
                     <h1 class="text-white font-bold text-2xl ml-2 w-[200px]">Hello Aditya</h1>
                 </div>
                 <div class="user-link h-7 w-[300px] mr-2">
-                    <button class="addbroker h-full w-[30%] text-white border-1 border-white rounded-sm">Add
+                    <button class="addbroker h-full w-[30%] text-white rounded-sm">Add
                         Broker</button>
                     <button
                         class="addbroker h-full w-[20%] text-white border-1 hover:border-amber-200 border-black rounded-sm ml-2">🔔</button>
@@ -79,11 +85,14 @@
 </template>
 
 <script setup>
+
 import Broker from '@/views/Broker.vue';
 import axios from 'axios';
+import { storeToRefs } from 'pinia';
 import { onMounted } from 'vue';
-import { RouterView, useRouter } from 'vue-router';
+import { RouterView, useRouter, useRoute } from 'vue-router';
 const router = useRouter();
+const route = useRoute();
 onMounted(()=>{
     const data = localStorage.getItem('token')
     if(!data){
